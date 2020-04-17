@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import cx from "classnames";
+import { infected, recover, death } from '../../images/index';
 
 import styles from "./Cards.module.css";
 
@@ -21,6 +22,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.infected)}
         >
           <CardContent>
+          <img src={infected} className={styles.smallimage} alt="infected" />
             <Typography color="textSecondary" gutterBottom>
               Infected
             </Typography>
@@ -48,6 +50,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.recovered)}
         >
           <CardContent>
+          <img src={recover} className={styles.smallimage} alt="recover" />
             <Typography color="textSecondary" gutterBottom>
               Recovered
             </Typography>
@@ -75,6 +78,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.deaths)}
         >
           <CardContent>
+          <img src={death} className={styles.smallimage}  alt="death" />
             <Typography color="textSecondary" gutterBottom>
               Deaths
             </Typography>

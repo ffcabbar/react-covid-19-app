@@ -7,7 +7,7 @@
   }
   
   .infected {
-    border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+    border-bottom: 10px solid rgba(255, 173, 31, 0.5);
   }
   
   .recovered{
@@ -16,6 +16,11 @@
   
   .deaths{
     border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+  }
+
+  .smallimage {
+    width: 64px;
+    height: 64px;
   }
 
   @media (max-width: 770px) {
