@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar, Doughnut } from "react-chartjs-2";
 import { fetchDailyData } from "../../api";
 import styles from "./Chart.module.css";
 import { Grid } from "@material-ui/core";
 
-const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+const Chart = ({
+  data: { confirmed, recovered, deaths },
+  country,
+}) => {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
@@ -17,8 +20,6 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   const lineChart = dailyData.length ? (
     <Line
-      width={300}
-      height={250}
       data={{
         labels: dailyData.map(({ date }) => date),
         datasets: [
@@ -43,8 +44,6 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   const barChart = confirmed ? (
     <Bar
-      width={300}
-      height={250}
       data={{
         labels: ["Infected", "Recovered", "Deaths"],
         datasets: [
@@ -66,9 +65,39 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     />
   ) : null;
 
+  const doughnutChart = dailyData.length ? (
+    <Doughnut
+      data={{
+        labels: ["Infected", "Recovered", "Deaths"],
+        datasets: [
+          {
+            data: [confirmed.value, recovered.value, deaths.value],
+            backgroundColor: [
+              "#ffad1f80",
+              "rgba(0, 255, 0, 0.5)",
+              "rgba(255, 0, 0, 0.5)",
+            ],
+            // hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          },
+        ],
+      }}
+      options={{
+        title: {
+          display: true,
+          text: !country ? "Ratio in Global" :  `Ratio in ${country}` ,
+        },
+      }}
+    />
+  ) : null;
+ 
   return (
-    <Grid item xs={12} className={styles.container}>
-      {country ? barChart : lineChart}
+    <Grid  container  className={styles.container}>
+      <Grid item xs={12} lg={8} >
+        {country ? barChart : lineChart}
+      </Grid>
+      <Grid item xs={12} lg={8} style={{marginTop: "30px"}}>
+        {doughnutChart}
+      </Grid>
     </Grid>
   );
 };

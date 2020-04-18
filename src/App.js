@@ -31,11 +31,11 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <img src={image} className={styles.image} alt="COVID-19" />
-        <Typography style={{marginTop: "20px"}} >
+        <Typography style={{ marginTop: "20px" }}>
           Data sources from{" "}
           <Link
-            href="https://github.com/alankilalank/react-covid-19"
-            style= {{color: "#f1bb07"}}
+            href="https://github.com/mathdroid/covid-19-api"
+            style={{ color: "#f1bb07" }}
             target="_blank"
           >
             mathdroid's
@@ -45,13 +45,17 @@ class App extends React.Component {
         <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart data={data} country={country} />
-        <Typography style={{marginTop: "30px"}}>
-          Made With <span role="img" aria-label="love">🧡</span> by{" "}
+        <Typography style={{ marginTop: "30px" }}>
+          Made With{" "}
+          <span role="img" aria-label="love">
+            🧡
+          </span>{" "}
+          by{" "}
           <Link
             href="https://www.linkedin.com/in/ffcabbar/"
             className={styles.api}
             target="_blank"
-            style= {{color: "#f1bb07"}}
+            style={{ color: "#f1bb07" }}
           >
             Furkan
           </Link>
