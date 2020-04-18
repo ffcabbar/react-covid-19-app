@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import { fetchDailyData } from "../../api";
 import styles from "./Chart.module.css";
+import { Grid } from "@material-ui/core";
 
 const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
@@ -16,6 +17,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   const lineChart = dailyData.length ? (
     <Line
+      width={300}
+      height={250}
       data={{
         labels: dailyData.map(({ date }) => date),
         datasets: [
@@ -40,6 +43,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   const barChart = confirmed ? (
     <Bar
+      width={300}
+      height={250}
       data={{
         labels: ["Infected", "Recovered", "Deaths"],
         datasets: [
@@ -62,9 +67,9 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   ) : null;
 
   return (
-  <div className={styles.container}>
-    {country ? barChart : lineChart}
-  </div>
+    <Grid item xs={12} className={styles.container}>
+      {country ? barChart : lineChart}
+    </Grid>
   );
 };
 
